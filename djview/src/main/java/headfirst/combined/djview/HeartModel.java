@@ -10,6 +10,7 @@ public class HeartModel implements HeartModelInterface, Runnable {
 	Random random = new Random(System.currentTimeMillis());
 	Thread thread;
 	private static HeartModel InstanciaUnica;
+	private static int nrinstancias; //la cantidad de intentos para crear una instancia nueva cuando ya existia una
 	private HeartModel(){
 		thread = new Thread(this);
 		thread.start();
@@ -19,13 +20,20 @@ public class HeartModel implements HeartModelInterface, Runnable {
 		if(InstanciaUnica == null){
 			InstanciaUnica = new HeartModel();
 			System.out.println("se creo la primera vez");
+			nrinstancias = 0;
 		}
 		else{
-			System.out.println("se quiso crear otra vez");
+			nrinstancias++;
+			System.out.println("se quiso crear otra vez " + nrinstancias );
+			
 		}
 		return InstanciaUnica;
 		
 	}
+	
+//	public static int getNrInstancias(){
+//		return nrinstancias;
+//	}
 
 	public void run() {
 		int lastrate = -1;
@@ -41,7 +49,7 @@ public class HeartModel implements HeartModelInterface, Runnable {
 				notifyBeatObservers();
 				if (rate != lastrate) {
 					lastrate = rate;
-					notifyBPMObservers();
+					//notifyBPMObservers();
 				}
 			}
 			try {
@@ -50,7 +58,8 @@ public class HeartModel implements HeartModelInterface, Runnable {
 		}
 	}
 	public int getHeartRate() {
-		return 60000/time;
+		//return 60000/time;
+		return nrinstancias;
 	}
 
 	public void registerObserver(BeatObserver o) {
