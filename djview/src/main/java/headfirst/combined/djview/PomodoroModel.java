@@ -126,7 +126,7 @@ public class PomodoroModel implements BeatModelInterface, MetaEventListener{
     } 
 
      public void buildTrackAndStart() {
-        int[] trackList = {35, 0, 46, 0};
+        int[] trackList = {70, 0,0, 0};
     
         sequence.deleteTrack(null);
         track = sequence.createTrack();
