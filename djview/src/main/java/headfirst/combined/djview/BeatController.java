@@ -3,12 +3,23 @@ package main.java.headfirst.combined.djview;
 public class BeatController implements ControllerInterface {
 	BeatModelInterface model;
 	DJView view;
-   
+	DJViewSingleton viewSingleton;
+	
+	public BeatController(DJViewSingleton viewSingleton,BeatModelInterface model ) {
+		this.model=model;
+		this.viewSingleton=DJViewSingleton.getInstance(this,model);
+		this.viewSingleton.createView();
+		this.viewSingleton.createControls();
+		this.viewSingleton.disableStopMenuItem();
+		this.viewSingleton.enableStartMenuItem();
+		model.initialize();
+	}
+	
 	public BeatController(BeatModelInterface model) {
 		this.model = model;
 		view = new DJView(this, model);
-        view.createView();
-        view.createControls();
+		view.createView();
+		view.createControls();
 		view.disableStopMenuItem();
 		view.enableStartMenuItem();
 		model.initialize();
@@ -40,4 +51,18 @@ public class BeatController implements ControllerInterface {
  	public void setBPM(int bpm) {
 		model.setBPM(bpm);
 	}
+
+ 	public void setModel(BeatModelInterface model){
+ 		this.model=model;
+ 	}
+ 	
+ 	public void setView (DJView view){
+ 		this.view=view;
+ 	}
+ 	
+ 	public DJView getView(){
+ 		return view;
+ 	}
+
+	
 }

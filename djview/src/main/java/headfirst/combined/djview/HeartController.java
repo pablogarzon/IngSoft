@@ -3,12 +3,17 @@ package main.java.headfirst.combined.djview;
 public class HeartController implements ControllerInterface {
 	HeartModelInterface model;
 	DJView view;
+	HeartAdapter modelAdapter;
   
+	public HeartController() {}
+		
+
 	public HeartController(HeartModelInterface model) {
 		this.model = model;
-		view = new DJView(this, new HeartAdapter(model));
-        view.createView();
-        view.createControls();
+		modelAdapter= new HeartAdapter(model);
+		view = new DJView(this, modelAdapter);
+		view.createView();
+		view.createControls();
 		view.disableStopMenuItem();
 		view.disableStartMenuItem();
 	}
@@ -27,4 +32,27 @@ public class HeartController implements ControllerInterface {
 	public void decreaseBPM() {}
   
  	public void setBPM(int bpm) {}
+
+ 	public void setModel(HeartAdapter modelAdapter){
+ 		this.modelAdapter=modelAdapter;
+ 	}
+ 	
+ 	public void setView (DJView view){
+ 		this.view=view;
+ 	}
+
+
+	@Override
+	public void setModel(BeatModelInterface model) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public DJView getView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

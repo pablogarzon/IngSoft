@@ -2,11 +2,14 @@ package main.java.headfirst.combined.djview;
     
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
-public class DJView implements ActionListener,  BeatObserver, BPMObserver {
+public class DJView implements ActionListener,  BeatObserver, BPMObserver{
 	BeatModelInterface model;
 	ControllerInterface controller;
+	
+	ModelosInterface modelos;
     JFrame viewFrame;
     JPanel viewPanel;
 	BeatBar beatBar;
@@ -22,6 +25,12 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
     JMenu menu;
     JMenuItem startMenuItem;
     JMenuItem stopMenuItem;
+    
+    JMenuBar menuBarSelec;
+    JMenu menuSelec;
+    JMenuItem heartModelSelec;
+    JMenuItem beatModelSelec;
+    JMenuItem pomodoroModelSelec;
 
     public DJView(ControllerInterface controller, BeatModelInterface model) {	
 		this.controller = controller;
@@ -80,9 +89,55 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
                 System.exit(0);
             }
         });
-
+       
+        ///Menu de seleccion de modelos
+        menuSelec = new JMenu("Modelos");
+        heartModelSelec = new JMenuItem("HeartModel");
+        menuSelec.add(heartModelSelec);
+        heartModelSelec.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+            	model=modelos.getModelHeart();
+            	controller=modelos.getControllerHeart();
+            	createView();
+        		createControls();
+        		disableStopMenuItem();
+        		disableStartMenuItem();
+            }
+        });
+        
+        beatModelSelec = new JMenuItem("BeatModel");
+        menuSelec.add(beatModelSelec); 
+        beatModelSelec.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+            	model=modelos.getModelBeat();
+            	controller=modelos.getControllerBeat();
+            	createView();
+        		createControls();
+        		disableStopMenuItem();
+        		enableStartMenuItem();
+        		model.initialize();
+            }
+        });
+        
+        pomodoroModelSelec = new JMenuItem("PomodoroModel");
+        menuSelec.add(pomodoroModelSelec);
+        pomodoroModelSelec.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent event) {
+            	model=modelos.getModelPomodoro();
+            	controller=modelos.getControllerPomodoro();
+            	createView();
+        		createControls();
+        		disableStopMenuItem();
+        		enableStartMenuItem();
+        		model.initialize();
+            }
+        });
+        
+        
         menu.add(exit);
         menuBar.add(menu);
+        controlFrame.setJMenuBar(menuBar);
+        menuBar.add(menuSelec);
         controlFrame.setJMenuBar(menuBar);
 
         bpmTextField = new JTextField(2);
@@ -165,5 +220,14 @@ public class DJView implements ActionListener,  BeatObserver, BPMObserver {
 		if (beatBar != null) {
 			 beatBar.setValue(100);
 		}
+	}
+	
+	
+	public void setModel( BeatModelInterface model){
+		this.model=model;
+	}
+	
+	public void setController( ControllerInterface controller){
+		this.controller=controller;
 	}
 }
