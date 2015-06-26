@@ -13,7 +13,9 @@ public class PomodoroView implements ActionListener,  BeatObserver, BPMObserver 
 	JLabel bpmOutputLabel;
     JFrame controlFrame;
     JPanel controlPanel;
-    JLabel Fondo;
+    JLabel label1;
+    JLabel label2;
+    JLabel label3;
     JLabel bpmLabel;
     JTextField bpmTextField;
     JButton setBPMButton;
@@ -38,14 +40,16 @@ public class PomodoroView implements ActionListener,  BeatObserver, BPMObserver 
         viewFrame = new JFrame("Pomodoro");
         viewFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         viewFrame.setSize(new Dimension(100, 80));
-        Fondo=new JLabel("", SwingConstants.CENTER);
-        Fondo.setIcon(new ImageIcon(getClass().getResource("pomodoro-timer.png")));
+        label1=new JLabel("", SwingConstants.CENTER);
+        label1.setIcon(new ImageIcon(getClass().getResource("pomodoro-timer.png")));
+        label2=new JLabel();
+        label3=new JLabel();
         bpmOutputLabel = new JLabel("", SwingConstants.LEFT);
-		beatBar = new BeatBar();
-		beatBar.setValue(0);
         JPanel bpmPanel = new JPanel(new GridLayout(2, 1));
-		bpmPanel.add(beatBar);
-        bpmPanel.add(Fondo);
+        //beatBar=new BeatBar();
+		bpmPanel.add(label2);
+        bpmPanel.add(label1);
+        bpmPanel.add(label3);
         bpmPanel.add(bpmOutputLabel);
         viewPanel.add(bpmPanel);
         viewFrame.getContentPane().add(viewPanel, BorderLayout.CENTER);
@@ -157,15 +161,16 @@ public class PomodoroView implements ActionListener,  BeatObserver, BPMObserver 
 			int bpm = model.getBPM();
 			if (bpm == 0) {
 				if (bpmOutputLabel != null) {
-					bpmOutputLabel.setIcon(new ImageIcon(getClass().getResource("cafe.png")));
-        			bpmOutputLabel.setText("<html><body><br><br><br>TAREA COMPLETADA!!!<html><body>");
+					label2.setIcon(new ImageIcon(getClass().getResource("cafe.png")));
+        			label2.setText("<html><body><br><br><br>POMODORO COMPLETADO!!!<html><body>");
+        			bpmOutputLabel.setText("<html><body><br><br><br>cantidad de pomodoros realizados: <html>");
         			
 				}
 			} else {
 				if (bpmOutputLabel != null) {
-					bpmOutputLabel.setIcon(new ImageIcon(getClass().getResource("libro.jpg")));
-        			bpmOutputLabel.setText( "<html><body><br><br><br><br>  Working... <br><br><br><br>"+ 
-        		    "minutos restantes: "+model.getBPM()+ "<html><body>");
+					label2.setIcon(new ImageIcon(getClass().getResource("libro.jpg")));
+        			label2.setText( "<html><body><br><br><br><br> A TRABAJAR!!! <br><br><br><br>");
+        		    bpmOutputLabel.setText("     minutos restantes: "+model.getBPM() );
         			
 				}
 			}
@@ -174,7 +179,7 @@ public class PomodoroView implements ActionListener,  BeatObserver, BPMObserver 
   
 	public void updateBeat() {
 		if (beatBar != null) {
-			 beatBar.setValue(100);
+			 beatBar.setValue(0);
 		}
 	}
 	
