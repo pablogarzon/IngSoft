@@ -11,6 +11,7 @@ public class PomodoroModel implements BeatModelInterface, MetaEventListener{
 	ArrayList beatObservers = new ArrayList();
 	ArrayList bpmObservers = new ArrayList();
     int bpm = 60;
+    int cantpomodoros = 0;
     int minutos;
     Sequence sequence;
     Track track;
@@ -22,6 +23,7 @@ public class PomodoroModel implements BeatModelInterface, MetaEventListener{
         setUpMidi();
         buildTrackAndStart(trackList);
 	}
+
  
     public void on() {
     	setUpMidi();
@@ -33,13 +35,13 @@ public class PomodoroModel implements BeatModelInterface, MetaEventListener{
     	
     }
     class Task extends TimerTask {
+   
         public void run() {
-        	//lo que se ejecuta cada cinco segundos mientras corre el hilo
+        	//lo que se ejecuta cada minuto
         	if(minutos>0){
-            System.out.println("minutos: " + minutos);
             notifyBPMObservers();
             minutos--;}
-        	//lo que se ejecuta cuando los minutos se terminaron
+        	//lo que se ejecuta cuando el pomodoro se terminó
         	else if(minutos==0) {
         	sequencer.stop();
         	timer.cancel();

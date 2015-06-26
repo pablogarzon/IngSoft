@@ -4,7 +4,7 @@ public class PomodoroController implements ControllerInterface {
 	
 	BeatModelInterface model;
 	PomodoroView view;
-	DJView view2;
+	//DJView view2;
 	
 	
 	public PomodoroController(BeatModelInterface model){
@@ -18,11 +18,11 @@ public class PomodoroController implements ControllerInterface {
 		view.enableStartMenuItem();
 		
 
-		view2 = new DJView(this, model);
-        view2.createView();
-        view2.createControls();
-		view2.disableStopMenuItem();
-		view2.enableStartMenuItem();
+//		view2 = new DJView(this, model);
+//        view2.createView();
+//        view2.createControls();
+//		view2.disableStopMenuItem();
+//		view2.enableStartMenuItem();
 		
 		model.initialize();
 	}
@@ -32,8 +32,8 @@ public class PomodoroController implements ControllerInterface {
 		view.disableStartMenuItem();
 		view.enableStopMenuItem();
 		
-		view2.disableStartMenuItem();
-		view2.enableStopMenuItem();
+//		view2.disableStartMenuItem();
+//		view2.enableStopMenuItem();
 	
 	}
 	public void stop(){
@@ -41,8 +41,8 @@ public class PomodoroController implements ControllerInterface {
 		view.disableStopMenuItem();
 		view.enableStartMenuItem();
 		
-		view2.disableStopMenuItem();
-		view2.enableStartMenuItem();
+//		view2.disableStopMenuItem();
+//		view2.enableStartMenuItem();
 
 	}
 	public void increaseBPM(){

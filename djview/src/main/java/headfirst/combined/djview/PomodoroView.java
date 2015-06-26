@@ -163,7 +163,7 @@ public class PomodoroView implements ActionListener,  BeatObserver, BPMObserver 
 				if (bpmOutputLabel != null) {
 					label2.setIcon(new ImageIcon(getClass().getResource("cafe.png")));
         			label2.setText("<html><body><br><br><br>POMODORO COMPLETADO!!!<html><body>");
-        			bpmOutputLabel.setText("<html><body><br><br><br>cantidad de pomodoros realizados: <html>");
+        			bpmOutputLabel.setText("     minutos restantes: "+model.getBPM() );
         			
 				}
 			} else {
