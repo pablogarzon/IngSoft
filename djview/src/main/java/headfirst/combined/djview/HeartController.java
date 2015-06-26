@@ -4,8 +4,22 @@ public class HeartController implements ControllerInterface {
 	HeartModelInterface model;
 	DJView view;
 	HeartAdapter modelAdapter;
+	DJViewSingleton viewSingleton;
   
-	public HeartController() {}
+	public HeartController(DJViewSingleton viewSingleton,HeartModelInterface model) {
+		this.model = model;
+		this.modelAdapter= new HeartAdapter(model);
+		this.viewSingleton = viewSingleton;
+		this.viewSingleton.setModel(modelAdapter);
+		this.viewSingleton.setController(this);
+		
+		this.viewSingleton.disableStopMenuItem();
+		this.viewSingleton.disableStartMenuItem();
+		
+		this.viewSingleton.disableHeartMenuItem();
+		this.viewSingleton.enablePomodoroMenuItem();
+		this.viewSingleton.enableBeatMenuItem();
+	}
 		
 
 	public HeartController(HeartModelInterface model) {
@@ -50,9 +64,16 @@ public class HeartController implements ControllerInterface {
 
 
 	@Override
-	public DJView getView() {
+	public void startSingleton() {
 		// TODO Auto-generated method stub
-		return null;
+		
+	}
+
+
+	@Override
+	public void stopSingleton() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

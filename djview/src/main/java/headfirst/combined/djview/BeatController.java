@@ -12,6 +12,11 @@ public class BeatController implements ControllerInterface {
 		this.viewSingleton.createControls();
 		this.viewSingleton.disableStopMenuItem();
 		this.viewSingleton.enableStartMenuItem();
+		
+		this.viewSingleton.enableHeartMenuItem();
+		this.viewSingleton.enablePomodoroMenuItem();
+		this.viewSingleton.disableBeatMenuItem();
+		
 		model.initialize();
 	}
 	
@@ -55,14 +60,22 @@ public class BeatController implements ControllerInterface {
  	public void setModel(BeatModelInterface model){
  		this.model=model;
  	}
+
+	@Override
+	public void startSingleton() {
+		model.on();
+		viewSingleton.disableStartMenuItem();
+		viewSingleton.enableStopMenuItem();
+	}
+
+	@Override
+	public void stopSingleton() {
+		model.off();
+		viewSingleton.disableStopMenuItem();
+		viewSingleton.enableStartMenuItem();
+	}
  	
- 	public void setView (DJView view){
- 		this.view=view;
- 	}
  	
- 	public DJView getView(){
- 		return view;
- 	}
 
 	
 }

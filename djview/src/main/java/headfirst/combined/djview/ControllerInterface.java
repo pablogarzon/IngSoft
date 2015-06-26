@@ -9,8 +9,7 @@ public interface ControllerInterface {
  	
  	public void setModel(BeatModelInterface model);
  	
- 	public void setView (DJView view);
- 	
- 	public DJView getView();
- 	
+ 	void startSingleton();
+	void stopSingleton();
+
 }

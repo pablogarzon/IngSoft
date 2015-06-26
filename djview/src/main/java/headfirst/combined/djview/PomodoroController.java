@@ -12,10 +12,13 @@ public class PomodoroController implements ControllerInterface {
 		this.viewSingleton.setModel(model);
 		this.viewSingleton.setController(this);
 		
-		this.viewSingleton.createView();
-		this.viewSingleton.createControls();
 		this.viewSingleton.disableStopMenuItem();
 		this.viewSingleton.enableStartMenuItem();
+		
+		this.viewSingleton.enableHeartMenuItem();
+		this.viewSingleton.disablePomodoroMenuItem();
+		this.viewSingleton.enableBeatMenuItem();
+		
 		model.initialize();
 	}
 	
@@ -59,10 +62,19 @@ public class PomodoroController implements ControllerInterface {
  		this.view=view;
  	}
 
+
 	@Override
-	public DJView getView() {
-		// TODO Auto-generated method stub
-		return null;
+	public void startSingleton() {
+		model.on();
+		viewSingleton.disableStartMenuItem();
+		viewSingleton.enableStopMenuItem();
+	}
+
+	@Override
+	public void stopSingleton() {
+		model.off();
+		viewSingleton.disableStopMenuItem();
+		viewSingleton.enableStartMenuItem();
 	}
 	
 
