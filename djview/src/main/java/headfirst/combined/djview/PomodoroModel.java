@@ -15,31 +15,43 @@ public class PomodoroModel implements BeatModelInterface, MetaEventListener{
     Sequence sequence;
     Track track;
     Timer timer;
+    int[] trackList = {50, 0, 0, 0};
+    int[] trackend = {81, 0, 0, 0};
  
 	public void initialize() {
         setUpMidi();
-        buildTrackAndStart();
+        buildTrackAndStart(trackList);
 	}
  
     public void on() {
     	setUpMidi();
-        buildTrackAndStart();
+        buildTrackAndStart(trackList);
         sequencer.start();
     	timer = new Timer();
     	timer.scheduleAtFixedRate(new Task(), 0, 60000); //cada segundo - después se implementa para cada minuto
+    	
     	
     }
     class Task extends TimerTask {
         public void run() {
         	//lo que se ejecuta cada cinco segundos mientras corre el hilo
-        	if(minutos>=0){
+        	if(minutos>0){
             System.out.println("minutos: " + minutos);
             notifyBPMObservers();
             minutos--;}
         	//lo que se ejecuta cuando los minutos se terminaron
-        	else{
-            timer.cancel(); //Terminate the timer thread
-            sequencer.stop();
+        	else if(minutos==0) {
+        	sequencer.stop();
+        	timer.cancel();
+        	setUpMidi();
+            buildTrackAndStart(trackend);
+            sequencer.start();
+        	timer = new Timer();
+        	timer.scheduleAtFixedRate(new Task(), 0, 1000); //cada segundo - después se implementa para cada minuto
+            minutos--;
+        	}
+            else if(minutos<0){ 
+            off();
         	}
         }
     }
@@ -55,11 +67,11 @@ public class PomodoroModel implements BeatModelInterface, MetaEventListener{
     public void setBPM(int bpm) {
     	if(bpm>=0)
     	minutos = bpm;
-    	else if(bpm==-1 && !sequencer.isRunning() && minutos>0){
+    	else if(bpm==-1 && !sequencer.isRunning() && minutos>=0){
     		setUpMidi();
-        	buildTrackAndStart();
+        	buildTrackAndStart(trackList);
     		sequencer.start();}
-    	else if(bpm==-2 && sequencer.isRunning() && minutos>0)
+    	else if(bpm==-2 && sequencer.isRunning() && minutos>=0)
     		sequencer.stop();
     	else{}
     }
@@ -148,8 +160,8 @@ public class PomodoroModel implements BeatModelInterface, MetaEventListener{
 		}
     } 
 
-     public void buildTrackAndStart() {
-        int[] trackList = {50, 0, 0, 0};
+     public void buildTrackAndStart(int[] trackList) {
+        
     
         sequence.deleteTrack(null);
         track = sequence.createTrack();
