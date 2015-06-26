@@ -2,10 +2,12 @@ package main.java.headfirst.combined.djview;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
 
 public class DJViewSingleton implements ActionListener,  BeatObserver, BPMObserver{
+	
 	BeatModelInterface model;
 	ControllerInterface controller;
 	
@@ -33,11 +35,12 @@ public class DJViewSingleton implements ActionListener,  BeatObserver, BPMObserv
     JMenuItem pomodoroModelSelec;
     
     private static DJViewSingleton InstanciaUnica;
-	private static int nrinstancias;
 
     private DJViewSingleton(ControllerInterface controller, BeatModelInterface model) {	
 		this.controller = controller;
 		this.model = model;
+		createView();
+		createControls();
 		model.registerObserver((BeatObserver)this);
 		model.registerObserver((BPMObserver)this);
     }
@@ -108,8 +111,11 @@ public class DJViewSingleton implements ActionListener,  BeatObserver, BPMObserv
         menuSelec.add(heartModelSelec);
         heartModelSelec.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
+            	model.off();
             	model=new HeartAdapter( HeartModel.getInstance());
             	controller=new HeartController(InstanciaUnica,HeartModel.getInstance());
+            	model.registerObserver((BeatObserver)InstanciaUnica);
+        		model.registerObserver((BPMObserver)InstanciaUnica);
             }
         });
         
@@ -117,9 +123,12 @@ public class DJViewSingleton implements ActionListener,  BeatObserver, BPMObserv
         menuSelec.add(beatModelSelec); 
         beatModelSelec.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
+            	model.off();
             	model=new BeatModel();
             	controller=new BeatController(InstanciaUnica,model);
-            	
+            	model.registerObserver((BeatObserver)InstanciaUnica);
+        		model.registerObserver((BPMObserver)InstanciaUnica);
+        		 beatBar.setValue(0);
             }
         });
         
@@ -127,8 +136,12 @@ public class DJViewSingleton implements ActionListener,  BeatObserver, BPMObserv
         menuSelec.add(pomodoroModelSelec);
         pomodoroModelSelec.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
+            	model.off();
             	model=new PomodoroModel();
             	controller= new PomodoroController(InstanciaUnica,model);
+            	model.registerObserver((BeatObserver)InstanciaUnica);
+        		model.registerObserver((BPMObserver)InstanciaUnica);
+        		
             }
         });
         
@@ -195,8 +208,7 @@ public class DJViewSingleton implements ActionListener,  BeatObserver, BPMObserv
 	}
     
     
-    
-	public void enableStopMenuItem() {
+    public void enableStopMenuItem() {
     	stopMenuItem.setEnabled(true);
 	}
 
@@ -252,6 +264,8 @@ public class DJViewSingleton implements ActionListener,  BeatObserver, BPMObserv
 	public void setController( ControllerInterface controller){
 		this.controller=controller;
 	}
+	
+	
 }
 
 

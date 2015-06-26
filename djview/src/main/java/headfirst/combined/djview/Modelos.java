@@ -14,6 +14,7 @@ public class Modelos implements ModelosInterface {
 	DJViewSingleton viewSingleton;
 	
 	public Modelos(){
+		
 		model = new BeatModel();
 		controller = new BeatController(viewSingleton,model);
 		
@@ -28,6 +29,7 @@ public class Modelos implements ModelosInterface {
 		//controller2 = new PomodoroController();
 		//controller2.setModel(model3);
 		//controller2.setView(controller.getView());
+		
 	}
 	
 	

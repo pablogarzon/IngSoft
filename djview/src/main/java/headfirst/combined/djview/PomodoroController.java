@@ -76,6 +76,4 @@ public class PomodoroController implements ControllerInterface {
 		viewSingleton.disableStopMenuItem();
 		viewSingleton.enableStartMenuItem();
 	}
-	
-
 }

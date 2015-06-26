@@ -7,9 +7,6 @@ public interface ControllerInterface {
 	void decreaseBPM();
  	void setBPM(int bpm);
  	
- 	public void setModel(BeatModelInterface model);
- 	
  	void startSingleton();
 	void stopSingleton();
-
 }

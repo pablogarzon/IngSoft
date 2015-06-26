@@ -3,7 +3,7 @@ package main.java.headfirst.combined.djview;
 public class DJTestDrive {
 	
     public static void main (String[] args) {
-    	Modelos modlos = new Modelos();
+    	Modelos modelos = new Modelos();
     	//BeatModelInterface model = new BeatModel();
 		//ControllerInterface controller = new BeatController(model);
 		

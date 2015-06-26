@@ -27,6 +27,7 @@ public class PomodoroModel implements BeatModelInterface, MetaEventListener{
         sequencer.start();
     	timer = new Timer();
     	timer.scheduleAtFixedRate(new Task(), 0, 60000); //cada segundo - después se implementa para cada minuto
+    	notifyBeatObservers();
     	
     }
     class Task extends TimerTask {

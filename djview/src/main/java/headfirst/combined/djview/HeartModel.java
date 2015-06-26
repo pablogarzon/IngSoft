@@ -47,6 +47,7 @@ public class HeartModel implements HeartModelInterface, Runnable {
 			if (rate < 120 && rate > 50) {
 				time += change;
 				notifyBeatObservers();
+				
 				if (rate != lastrate) {
 					lastrate = rate;
 					//notifyBPMObservers();
@@ -97,4 +98,6 @@ public class HeartModel implements HeartModelInterface, Runnable {
 			observer.updateBPM();
 		}
 	}
+	
+
 }

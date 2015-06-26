@@ -8,8 +8,7 @@ public class BeatController implements ControllerInterface {
 	public BeatController(DJViewSingleton viewSingleton,BeatModelInterface model ) {
 		this.model=model;
 		this.viewSingleton=DJViewSingleton.getInstance(this,model);
-		this.viewSingleton.createView();
-		this.viewSingleton.createControls();
+		
 		this.viewSingleton.disableStopMenuItem();
 		this.viewSingleton.enableStartMenuItem();
 		
@@ -74,8 +73,8 @@ public class BeatController implements ControllerInterface {
 		viewSingleton.disableStopMenuItem();
 		viewSingleton.enableStartMenuItem();
 	}
- 	
- 	
 
+
+ 	
 	
 }
