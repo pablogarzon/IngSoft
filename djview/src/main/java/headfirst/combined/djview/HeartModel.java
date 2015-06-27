@@ -9,6 +9,7 @@ public class HeartModel implements HeartModelInterface, Runnable {
     int bpm = 90;
 	Random random = new Random(System.currentTimeMillis());
 	Thread thread;
+	boolean encendido=true;
 	private static HeartModel InstanciaUnica;
 	private static int nrinstancias; //la cantidad de intentos para crear una instancia nueva cuando ya existia una
 	private HeartModel(){
@@ -46,7 +47,7 @@ public class HeartModel implements HeartModelInterface, Runnable {
 			int rate = 60000/(time + change);
 			if (rate < 120 && rate > 50) {
 				time += change;
-				notifyBeatObservers();
+				if(encendido)notifyBeatObservers();
 				
 				if (rate != lastrate) {
 					lastrate = rate;
@@ -97,6 +98,18 @@ public class HeartModel implements HeartModelInterface, Runnable {
 			BPMObserver observer = (BPMObserver)bpmObservers.get(i);
 			observer.updateBPM();
 		}
+	}
+
+	@Override
+	public void detenerHeart() {
+		encendido=false;
+		
+	}
+
+	@Override
+	public void comenzarHeart() {
+		// TODO Auto-generated method stub
+		encendido=true;
 	}
 	
 

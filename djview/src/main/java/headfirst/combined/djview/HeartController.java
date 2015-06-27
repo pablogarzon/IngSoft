@@ -33,15 +33,11 @@ public class HeartController implements ControllerInterface {
 	}
 
 	public void start() {
+		model.comenzarHeart();
 	}
 
 	public void stop() {
-		try {
-			model.wait();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		model.detenerHeart();
 	}
 
 	public void increaseBPM() {

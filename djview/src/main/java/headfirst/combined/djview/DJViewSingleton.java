@@ -116,6 +116,7 @@ public class DJViewSingleton implements ActionListener,  BeatObserver, BPMObserv
             	controller=new HeartController(InstanciaUnica,HeartModel.getInstance());
             	model.registerObserver((BeatObserver)InstanciaUnica);
         		model.registerObserver((BPMObserver)InstanciaUnica);
+        		model.on();
             }
         });
         
@@ -128,7 +129,6 @@ public class DJViewSingleton implements ActionListener,  BeatObserver, BPMObserv
             	controller=new BeatController(InstanciaUnica,model);
             	model.registerObserver((BeatObserver)InstanciaUnica);
         		model.registerObserver((BPMObserver)InstanciaUnica);
-        		 beatBar.setValue(0);
             }
         });
         
