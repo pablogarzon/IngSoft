@@ -7,7 +7,7 @@ public interface TimerModelInterface {
 	int getMinutos();
 	void iniciar();
 	void terminar();
-	void sonido();
+	void sonido(boolean b);
 	
 	void registerObserver(BeatObserver o);
 	void removeObserver(BeatObserver o);

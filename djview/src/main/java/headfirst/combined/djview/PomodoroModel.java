@@ -67,14 +67,18 @@ public class PomodoroModel implements TimerModelInterface,MetaEventListener {
 	}
 	
 	
-	public void sonido(){
-		if(sequencer.isRunning())
+	public void sonido(boolean b){
+		//apaga el sequencer si el timer está prendido y el sequencer está andando
+		if(minutos>=0 && sequencer.isRunning() && b==false)
 			sequencer.stop();
-		else{
+		if(minutos>=0 && !sequencer.isRunning() && b==true){
 			setUpMidi();
         	buildTrackAndStart(trackList);
     		sequencer.start();}
-		}
+								
+	
+	}	
+
 	public void beatEvent() { notifyBeatObservers();}
 	
 	public void registerObserver(BeatObserver o) {

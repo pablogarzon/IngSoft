@@ -19,12 +19,12 @@ public class HeartModel implements HeartModelInterface, Runnable {
 	public static HeartModel getInstance() {
 		if(InstanciaUnica == null){
 			InstanciaUnica = new HeartModel();
-			System.out.println("se creo la primera vez");
+			//System.out.println("se creo la primera vez");
 			nrinstancias = 0;
 		}
 		else{
 			nrinstancias++;
-			System.out.println("se quiso crear otra vez " + nrinstancias );
+			//System.out.println("se quiso crear otra vez " + nrinstancias );
 			
 		}
 		return InstanciaUnica;

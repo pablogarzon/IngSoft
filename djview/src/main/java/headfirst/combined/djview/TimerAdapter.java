@@ -14,10 +14,7 @@ public class TimerAdapter implements BeatModelInterface {
 	public void off(){timer.terminar();}
   
     public void setBPM(int bpm){
-    	if(bpm>=0)
     	timer.setMinutos(bpm);
-    	else
-    	timer.sonido();
     }
   
 	public int getBPM(){return timer.getMinutos();}
