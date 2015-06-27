@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import javax.sound.midi.*;
 import java.util.Timer;
 import java.util.TimerTask;
+
 public class PomodoroModel implements TimerModelInterface,MetaEventListener {
 	
 	Sequencer sequencer;

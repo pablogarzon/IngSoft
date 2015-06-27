@@ -6,6 +6,9 @@ public class MyPomodoroTestDrive {
 	
 	TimerModelInterface timer = new PomodoroModel();
 	ControllerInterface timercontroller = new PomodoroController(timer);
+	
+	TimerModelInterface timer2 = new PomodoroModel();
+	ControllerInterface timer2controller = new PomodoroControlleryVista(timer2);
 	}
 
 }
