@@ -22,7 +22,7 @@ public class PomodoroModel implements TimerModelInterface,MetaEventListener {
         buildTrackAndStart(trackList);
 	}
 	
-	public void setMinutos(int minutos){	this.minutos = minutos;	}
+	public void setMinutos(int minutos){	if(minutos>0) {this.minutos = minutos;	}}
 	
 	public int getMinutos(){return minutos;}
 	

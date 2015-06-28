@@ -1,11 +1,10 @@
 package main.java.headfirst.combined.djview;
 
-public class TodoTestDrive {
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		BeatModelInterface dj = new BeatModel();
-		ControllerInterface controller1 = new BeatController(dj);
+public class TestDriveThree {
+	
+	public static void main (String[] args) {
+        BeatModelInterface model = new BeatModel();
+		ControllerInterface controller = new BeatController(model);
 		
 		HeartModelInterface heart = HeartModel.getInstance();
 		ControllerInterface controller2 = new HeartController(heart);
@@ -13,6 +12,7 @@ public class TodoTestDrive {
 		TimerModelInterface timer = new PomodoroModel();
 		ControllerInterface controller3 = new PomodoroControlleryVista(timer);
 		
-	}
+		
+    }
 
 }

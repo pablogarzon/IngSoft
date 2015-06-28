@@ -3,7 +3,7 @@ package main.java.headfirst.combined.djview;
 public class BeatController implements ControllerInterface {
 	BeatModelInterface model;
 	DJView view;
-   
+	
 	public BeatController(BeatModelInterface model) {
 		this.model = model;
 		view = new DJView(this, model);
