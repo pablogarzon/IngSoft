@@ -183,6 +183,27 @@ public class PomodoroView implements ActionListener,  BeatObserver, BPMObserver 
 			 beatBar.setValue(100);
 		}
 	}
+
+	public JTextField getBpmTextField() {
+		return bpmTextField;
+	}
+
+	public JButton getSetBPMButton() {
+		return setBPMButton;
+	}
+
+	public JMenu getMenu() {
+		return menu;
+	}
+
+	public JMenuItem getStartMenuItem() {
+		return startMenuItem;
+	}
+
+	public JButton getDecreaseBPMButton() {
+		return decreaseBPMButton;
+	}
+	
 	
 
 

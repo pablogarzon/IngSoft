@@ -29,4 +29,10 @@ public class PomodoroControlleryVista implements ControllerInterface {
 	public void decreaseBPM(){ model.sonido(false);} //apagar el sonido
  	public void setBPM(int bpm){model.setMinutos(bpm);}
 
+	public PomodoroView getView() {
+		return view;
+	}
+
+	
+
 }

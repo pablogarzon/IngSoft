@@ -196,5 +196,11 @@ public class PomodoroModel implements TimerModelInterface,MetaEventListener {
 		}
         return event;
     }
+
+	public Sequencer getSequencer() {
+		return sequencer;
+	}
+    
+    
 }
 
