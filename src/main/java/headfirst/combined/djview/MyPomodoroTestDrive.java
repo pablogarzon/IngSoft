@@ -6,6 +6,7 @@ public class MyPomodoroTestDrive {
 		// TODO Auto-generated method stub
 		BeatModelInterface pomodoro = new PomodoroModel();
 		ControllerInterface control = new PomodoroController(pomodoro);
+                System.out.println("hola mundo");
 		
 	}
 
